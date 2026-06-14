@@ -3,10 +3,9 @@
 > 记录所有可用的MCP（Model Context Protocol）接口
 
 ## 更新日期
-2026-06-13
+2026-06-14
 
 ---
-
 ## 📍 地图与出行
 
 ### 高德地图 (amap) — 12工具
@@ -43,7 +42,6 @@
 | taxi_generate_ride_app_link | 生成打车App深度链接 |
 
 ---
-
 ## 📊 金融数据
 
 ### 股票行情 (stock-quote) — 21工具
@@ -125,7 +123,6 @@ ETF：持仓清单、申购赎回清单。
 | generate_pin_map | 点位地图 |
 
 ---
-
 ## 🎨 AI生成
 
 ### MiniMax (minimax) — 9工具
@@ -163,7 +160,6 @@ ETF：持仓清单、申购赎回清单。
 | 二维码生成 | 生成二维码图片 |
 
 ---
-
 ## 📄 文档处理
 
 ### 文档工厂 (doc-forge) — 16工具
@@ -202,7 +198,6 @@ ETF：持仓清单、申购赎回清单。
 | convert-contents | 文档格式转换（Markdown↔HTML↔PDF↔DOCX等） |
 
 ---
-
 ## 🌐 浏览器与自动化
 
 ### Playwright (playwright) — 8工具
@@ -218,7 +213,6 @@ ETF：持仓清单、申购赎回清单。
 | close_browser | 关闭浏览器 |
 
 ---
-
 ## 🛠️ 数据库与开发
 
 ### SQLite (sqlite) — 5工具
@@ -261,7 +255,6 @@ ETF：持仓清单、申购赎回清单。
 | update_pull_request_branch | 更新PR分支 |
 
 ---
-
 ## 🍳 生活服务
 
 ### 美食 (food-detective) — 1工具
@@ -284,15 +277,14 @@ ETF：持仓清单、申购赎回清单。
 | BMI体重指数 | 根据身高体重计算BMI并给出健康建议 |
 
 ---
-
 ## 🗓️ 工具类
 
 ### 天气 (weather) — 3工具
 | 工具 | 功能 |
 |------|------|
-| get-forecast | 指定坐标天气预报 |
-| get-alerts | 天气预警 |
-| enable-air-quality | 空气质量查询 |
+| get_weather | 获取当前天气 |
+| get_forecast | 获取天气预报 |
+| get_air_quality | 获取空气质量 |
 
 ### 时间 (local_time) — 1工具
 | 工具 | 功能 |
@@ -316,7 +308,6 @@ ETF：持仓清单、申购赎回清单。
 | generate_ppt_by_topic | 根据主题生成PPT |
 
 ---
-
 ## 📋 MCP总览
 
 | MCP名称 | 状态 | 工具数 |
@@ -347,10 +338,10 @@ ETF：持仓清单、申购赎回清单。
 | luckin | ⛔ 已禁用 | — |
 | mbti | ⛔ 已禁用 | — |
 | gf-windmill | ⛔ 已禁用 | — |
-| mmb-mcp | ⛔ 连接失败 | — |
+| mmb-mcp | ❌ 连接失败 | — |
 
-**总计：24个MCP已启用，3个已禁用，1个连接失败，共约270个工具**
+**总计：23个MCP已启用，3个已禁用，1个连接失败，共约267个工具**
 
 ---
 
-*本文档由旺旺Agent自动生成，更新于 2026-06-13*
+*本文档由旺旺Agent自动生成，更新于 2026-06-14*
