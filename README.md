@@ -1,546 +1,488 @@
 # Hermes Agent MCP API 文档
 
-> 📅 更新时间: 2026-06-17  
-> 🤖 Hermes Agent 版本: 最新  
-> 📊 总计: 28个已启用MCP服务器
+> 📅 更新时间: 2026年06月18日 08:09
+> 🤖 Hermes Agent 版本: 最新
+> 📊 总计: 28个MCP服务器（含23个已连接）
 
 ---
 
 ## 📋 目录
 
-1. [HTTP传输型MCP](#http传输型mcp)
-2. [SSE传输型MCP](#sse传输型mcp)
-3. [Stdio传输型MCP](#stdio传输型mcp)
+1. [已连接MCP列表](#已连接mcp列表)
+2. [未连接/已禁用MCP](#未连接已禁用mcp)
 
 ---
 
-## HTTP传输型MCP
+## 已连接MCP列表
 
-### 1. antv-chart (金融数据)
+---
 
-**功能**: A股/基金/指数的金融数据查询与分析
+### 1. antv-chart（金融数据）
+
+**功能**: A股/基金/指数/期货的金融数据查询与分析，支持124个工具
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| list_fund_nav_history | 查询基金历史净值 |
-| list_fund_adj_navs | 查询基金复权净值 |
-| list_fund_adj_quotes | 查询基金前复权日行情 |
-| list_fund_daily_quotes | 查询基金日行情 |
-| list_fund_return_rate | 查询基金回报率 |
-| list_fund_portfolio_stock_holdings | 查询基金持仓股票 |
-| list_fund_portfolio_bond_holdings | 查询基金持仓债券 |
-| list_fund_portfolio_asset_holdings | 查询基金资产配置 |
-| list_fund_hold_industry | 查询基金持有行业 |
-| list_fund_hold_structures | 查询基金持有人结构 |
-| list_etf_constituent_stks | 查询ETF成分股 |
-| list_etf_sub_red_lists | 查询ETF申赎清单 |
-| list_index_quotes | 查询指数行情 |
-| list_index_quote_barch | 查询指数历史行情 |
-| list_stock_all | 查询全市场股票 |
+| list_stock_all | 获取全市场A股/B股基本信息 |
 | list_stock_adjusted_quotes | 查询股票复权行情 |
 | list_stock_unadjusted_quotes | 查询股票未复权行情 |
 | list_stock_income_statements | 查询利润表 |
 | list_stock_balance_sheet | 查询资产负债表 |
 | list_stock_cash_flows | 查询现金流量表 |
-| list_stock_cash_flows_pit | 查询现金流时点数据 |
-| list_stocks_dividends | 查询股票分红 |
-| list_stock_rights_issues | 查询配股 |
-| list_stock_offerings | 查询增发 |
+| list_stocks_dividends | 查询股票分红派息 |
+| list_stock_rights_issues | 查询配股信息 |
+| list_stock_offerings | 查询增发方案 |
 | list_stock_major_contracts | 查询重大合同 |
 | list_stock_tender_offers | 查询要约收购 |
 | list_stock_related_transactions | 查询关联交易 |
 | list_stock_earnings_bulletins | 查询业绩快报 |
-| list_stock_report_schema | 查询定期报告 |
-| list_stock_pledge_details | 查询股权质押 |
-| list_stock_freeze_details | 查询股权冻结 |
+| list_stock_report_schema | 查询定期报告披露日程 |
+| list_stock_pledge_details | 查询股权质押明细 |
+| list_stock_freeze_details | 查询股权冻结明细 |
 | list_stock_executive_shareholding_change | 查询高管持股变动 |
 | list_stock_top10_circulating_shareh | 查询十大流通股东 |
 | list_stock_holder_cnt | 查询股东户数 |
 | list_stock_institutional_holdings_stats | 查询机构持仓统计 |
 | list_stock_management_dirs | 查询管理层信息 |
 | list_stock_core_mgmt_changes | 查询核心管理层变更 |
-| list_stock_repurchase_plans | 查询股份回购 |
+| list_stock_repurchase_plans | 查询股份回购计划 |
 | list_stock_capital_changes | 查询股本变动 |
 | list_stock_share_adj_factors | 查询除权除息因子 |
-| list_stock_industries | 查询股票行业 |
-| list_stock_industries | 查询股票行业分类 |
+| list_stock_industries | 查询股票所属行业 |
+| get_stock_basic_info | 查询股票基本信息 |
 | get_company_profiles | 查询公司基本信息 |
-| get_fund_basic_info | 查询基金基本信息 |
-| get_fund_categories | 查询基金分类 |
-| get_fund_manager_basic_info | 查询基金经理 |
-| get_fund_listings_record | 查询基金发行上市 |
-| get_fund_fee_structures | 查询基金费率 |
-| get_fund_perf_benchmarks | 查询基金业绩基准 |
-| get_fund_invest_targets | 查询基金投资标的 |
-| list_fund_all | 查询全部基金 |
-| list_fund_fin_inds | 查询基金财务指标 |
-| list_fund_fin_inds_q | 查询基金季度财务指标 |
-| list_fund_dividend_distributions | 查询基金分红 |
-| list_fund_share_splits | 查询基金拆分折算 |
-| list_fund_shares | 查询基金份额变动 |
-| list_subscription_redemption_status | 查询申赎状态 |
+| get_stock_former_names | 查询股票历史曾用名 |
+| get_stock_margin_securities | 查询融资融券标的 |
+| list_index_quotes | 查询指数历史行情 |
+| list_index_quote_barch | 查询指数日行情 |
 | get_index_basic_info | 查询指数基本信息 |
-| list_industries | 查询行业列表 |
+| list_fund_all | 获取全市场基金列表 |
+| list_fund_nav_history | 查询基金净值历史 |
+| list_fund_adj_navs | 查询基金复权净值 |
+| list_fund_adj_quotes | 查询基金前复权行情 |
+| list_fund_daily_quotes | 查询基金日行情 |
+| list_fund_return_rate | 查询基金历史回报率 |
+| list_fund_portfolio_stock_holdings | 查询基金持仓股票 |
+| list_fund_portfolio_bond_holdings | 查询基金持仓债券 |
+| list_fund_portfolio_asset_holdings | 查询基金资产配置 |
+| list_fund_portfolio_fund_holdings | 查询基金持仓基金 |
+| list_fund_hold_industry | 查询基金持有行业 |
+| list_fund_hold_structures | 查询基金持有人结构 |
+| list_etf_constituent_stks | 查询ETF成分股 |
+| list_etf_sub_red_lists | 查询ETF申赎清单 |
 | list_industry_hold_fund | 查询行业持有基金 |
+| get_fund_basic_info | 查询基金基本信息 |
+| get_fund_categories | 查询基金三级分类 |
+| get_fund_manager_basic_info | 查询基金经理信息 |
+| get_fund_listings_record | 查询基金发行上市记录 |
+| get_fund_code_assoc | 查询基金关联关系 |
+| get_fund_award_records | 查询基金所获奖项 |
+| list_fund_invest_targets | 查询基金投资标的 |
+| list_fund_perf_benchmarks | 查询基金业绩比较基准 |
+| list_fund_fee_structures | 查询基金费率结构 |
+| list_fund_fin_inds | 查询基金主要财务指标 |
+| list_fund_fin_inds_q | 查询基金季度财务指标 |
+| list_fund_share_splits | 查询基金份额拆分折算 |
+| list_fund_dividend_distributions | 查询基金分红 |
+| list_currency_yield_history | 查询货币基金收益 |
+| list_subscription_redemption_status | 查询基金申购赎回状态 |
+| list_stock_absorption_mergers | 查询吸收合并事件 |
+| list_stock_special_notices | 查询特别提示信息 |
+| list_report_institutions | 查询研究机构列表 |
+| list_industries | 查询行业列表 |
+| get_trade_special_date | 查询交易日衍生日期 |
+| is_trade_date | 判断是否为交易日 |
+| get_cn_trade_calender_list | 查询A股交易日历 |
+| list_economic_cn_cpi | 查询CPI居民消费价格指数 |
+| list_economic_cn_ppi | 查询PPI工业生产者出厂价格指数 |
+| list_money_supplies | 查询货币供应量M0/M1/M2 |
+| list_gover_bond_yield | 查询国债收益率曲线 |
+| list_money_market_repo_in | 查询货币市场回购 |
+| list_social_financing_sto | 查询社会融资规模存量 |
+| list_hk_stock_dividends | 查询港股分红 |
 | list_concepts | 查询概念列表 |
 | list_concept_hold_fund | 查询概念持有基金 |
-| list_stock_special_notices | 查询特别提示 |
-| list_stock_absorption_mergers | 查询吸收合并 |
-| list_stock_stock_plans | 查询股票计划 |
-| list_stock_management_plans | 查询管理层计划 |
-| list_stock_related_parties | 查询关联方 |
-| list_stock_management_changes | 查询管理层变动 |
-| list_stock_related_party_transactions | 查询关联方交易 |
-| list_stock_management_compensation | 查询管理层薪酬 |
-| search | 搜索金融产品 |
-| list_gover_bond_yield | 查询国债收益率 |
-| list_money_market_repo_in | 查询货币市场 |
-| list_money_supplies | 查询货币供应量 |
-| list_social_financing_sto | 查询社融存量 |
-| list_economic_cn_cpi | 查询CPI |
-| list_economic_cn_ppi | 查询PPI |
-| list_trade_special_date | 查询交易日衍生日期 |
-| is_trade_date | 判断是否交易日 |
-| get_trade_calender_list | 查询交易日历 |
-| get_stock_basic_info | 查询股票基本信息 |
-| get_stock_industries | 查询股票行业 |
-| get_stock_margin_securities | 查询融资融券标的 |
-| get_stock_rights_issues | 查询配股 |
-| get_stock_former_names | 查询股票曾用名 |
-| list_stock_management_plans | 查询管理层计划 |
-| list_stock_management_changes | 查询管理层变更 |
-| list_stock_related_party_transactions | 查询关联方交易 |
-| list_stock_management_compensation | 查询管理层薪酬 |
-| list_hk_stock_dividends | 查询港股分红 |
-| list_stock_mgmt_reports | 查询管理报告 |
-| list_stock_audit_reports | 查询审计报告 |
-| list_stock_prospectus | 查询招股说明书 |
-| list_stock_ipo_info | 查询IPO信息 |
-| list_stock_split_info | 查询拆分信息 |
-| list_stock_delist_info | 查询退市信息 |
-| generate_chart | 生成图表 |
+| search | 按关键字搜索金融产品 |
+| generate_chart | ECharts图表转Base64图片 |
+| generate_nex_chart | 生成ECharts图表图片 |
 
 ---
 
-### 2. stock-quote (股票行情)
+### 2. antv-visual（图表可视化）
 
-**功能**: A股K线、外汇、期货行情查询
+**功能**: 25种图表生成工具，支持折线图/柱状图/地图等可视化
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| A_K_ | A股K线行情 |
-| A_K___ | A股K线复权 |
-| A___ | A股排行 |
-| ___K_ | 外汇K线 |
-| _____ | 外汇报价 |
-| _____K_ | 外盘期货K线 |
-| _______ | 外盘期货报价 |
+| generate_line_chart | 生成折线图（展示趋势变化） |
+| generate_bar_chart | 生成水平柱状图（分类比较） |
+| generate_column_chart | 生成柱状图（分类对比） |
+| generate_area_chart | 生成面积图（数据趋势面积） |
+| generate_pie_chart | 生成饼图（占比展示） |
+| generate_scatter_chart | 生成散点图（两变量关系） |
+| generate_radar_chart | 生成雷达图（多维数据） |
+| generate_venn_chart | 生成韦恩图（集合关系） |
+| generate_mind_map | 生成思维导图（层级结构） |
+| generate_organization_chart | 生成组织架构图 |
+| generate_flow_diagram | 生成流程图（步骤决策） |
+| generate_network_graph | 生成网络图（实体关系） |
+| generate_sankey_chart | 生成桑基图（数据流动） |
+| generate_funnel_chart | 生成漏斗图（转化率） |
+| generate_fishbone_diagram | 生成鱼骨图（因果分析） |
+| generate_histogram_chart | 生成直方图（频率分布） |
+| generate_boxplot_chart | 生成箱线图（统计摘要） |
+| generate_violin_chart | 生成小提琴图（数据分布） |
+| generate_treemap_chart | 生成矩形树图（层级数据） |
+| generate_word_cloud_chart | 生成词云图（词频权重） |
+| generate_liquid_chart | 生成水球图（百分比值） |
+| generate_dual_axes_chart | 生成双轴图（趋势+对比） |
+| generate_district_map | 生成区域地图（中国行政） |
+| generate_path_map | 生成路线地图（旅行规划） |
+| generate_pin_map | 生成点标注地图（位置分布） |
 
 ---
 
-### 3. didi (滴滴出行)
+### 3. amap（高德地图）
 
-**功能**: 滴滴打车、路线规划、地点搜索
+**功能**: 高德地图Web服务API，支持地理编码/路径规划/POI搜索
+
+| 工具名称 | 功能说明 |
+|---------|---------|
+| maps_geo | 地址转经纬度（地理编码） |
+| maps_regeocode | 经纬度转行政区划地址 |
+| maps_ip_location | IP地址定位 |
+| maps_weather | 查询城市天气预报 |
+| maps_text_search | 关键词POI搜索 |
+| maps_around_search | 周边POI搜索 |
+| maps_search_detail | 查询POI详细信息 |
+| maps_direction_driving | 驾车路径规划 |
+| maps_direction_walking | 步行路径规划 |
+| maps_direction_transit_integrated | 公交综合路径规划 |
+| maps_bicycling | 骑行路径规划 |
+| maps_distance | 距离测量（驾车/步行/球面） |
+
+---
+
+### 4. stock-quote（股票行情）
+
+**功能**: A股/港股/美股/期货/外汇实时行情与K线数据
+
+| 工具名称 | 功能说明 |
+|---------|---------|
+| A股报价 | A股实时报价 |
+| A股排行 | A股涨跌幅/成交量等排行 |
+| A股K线 | A股K线数据 |
+| A股K线复权 | A股复权K线 |
+| 港股报价 | 港股实时报价 |
+| 港股排行 | 港股排行 |
+| 港股K线 | 港股K线数据 |
+| 美股报价 | 美股实时报价 |
+| 美股排行 | 美股排行 |
+| 美股K线 | 美股K线数据 |
+| 美股品种 | 美股品种信息 |
+| 外汇报价 | 外汇实时报价 |
+| 外汇K线 | 外汇K线数据 |
+| 全球指数报价 | 全球指数报价 |
+| 全球指数K线 | 全球指数K线 |
+| 内盘期货报价 | 内盘期货实时报价 |
+| 内盘期货K线 | 内盘期货K线 |
+| 内盘期货合约 | 内盘期货合约信息 |
+| 外盘期货报价 | 外盘期货实时报价 |
+| 外盘期货K线 | 外盘期货K线 |
+| 外盘期货合约 | 外盘期货合约信息 |
+
+---
+
+### 5. didi（滴滴出行）
+
+**功能**: 滴滴出行：路径规划/打车/订单管理
 
 | 工具名称 | 功能说明 |
 |---------|---------|
 | maps_direction_driving | 驾车路径规划 |
-| maps_direction_bicycling | 骑行路径规划 |
 | maps_direction_walking | 步行路径规划 |
-| maps_direction_transit | 公交路径规划 |
+| maps_direction_transit | 公交地铁路径规划 |
+| maps_direction_bicycling | 骑行路径规划 |
 | maps_textsearch | 地点关键词搜索 |
 | maps_place_around | 周边地点搜索 |
 | maps_regeocode | 经纬度转地址 |
-| taxi_estimate | 打车预估价格 |
+| taxi_estimate | 查看打车预估价格 |
 | taxi_create_order | 创建打车订单 |
+| taxi_cancel_order | 取消打车订单 |
 | taxi_query_order | 查询订单状态 |
-| taxi_cancel_order | 取消订单 |
-| taxi_get_driver_location | 获取司机位置 |
-| taxi_generate_ride_app_link | 生成打车链接 |
+| taxi_get_driver_location | 获取司机实时位置 |
+| taxi_generate_ride_app_link | 生成打车App深度链接 |
 
 ---
 
-### 4. bmi-mcp (BMI指数)
+### 6. github（GitHub操作）
+
+**功能**: GitHub仓库/Issue/PR/代码管理
+
+| 工具名称 | 功能说明 |
+|---------|---------|
+| create_repository | 创建新仓库 |
+| fork_repository | Fork仓库 |
+| get_file_contents | 获取文件/目录内容 |
+| push_files | 批量推送文件 |
+| create_or_update_file | 创建或更新单文件 |
+| create_branch | 创建分支 |
+| list_commits | 获取提交记录 |
+| search_repositories | 搜索仓库 |
+| search_code | 搜索代码 |
+| search_users | 搜索用户 |
+| create_issue | 创建Issue |
+| list_issues | 列出Issue |
+| get_issue | 获取Issue详情 |
+| update_issue | 更新Issue |
+| add_issue_comment | 添加Issue评论 |
+| search_issues | 搜索Issue/PR |
+| create_pull_request | 创建PR |
+| list_pull_requests | 列出PR |
+| get_pull_request | 获取PR详情 |
+| get_pull_request_files | 获取PR变更文件 |
+| get_pull_request_comments | 获取PR评论 |
+| get_pull_request_reviews | 获取PR审查 |
+| get_pull_request_status | 获取PR状态 |
+| create_pull_request_review | 创建PR审查 |
+| merge_pull_request | 合并PR |
+| update_pull_request_branch | 更新PR分支 |
+
+---
+
+### 7. minimax（MiniMax AI）
+
+**功能**: MiniMax AI：图片/视频/音乐生成，语音合成与克隆
+
+| 工具名称 | 功能说明 |
+|---------|---------|
+| text_to_image | 文字生成图片 |
+| text_to_audio | 文字转语音 |
+| text_to_video | 文字生成视频 |
+| music_generation | AI音乐生成 |
+| voice_clone | 声音克隆 |
+| voice_design | AI生成语音 |
+| list_voices | 列出可用音色 |
+| play_audio | 播放音频文件 |
+| query_video_generation | 查询视频生成状态 |
+
+---
+
+### 8. weather（天气查询）
+
+**功能**: 实时天气/预报/空气质量
+
+| 工具名称 | 功能说明 |
+|---------|---------|
+| get_weather | 获取当前天气 |
+| get_forecast | 获取天气预报（1-5天） |
+| get_air_quality | 获取空气质量 |
+
+---
+
+### 9. local_time（本地时间）
+
+**功能**: 获取当前本地时间
+
+| 工具名称 | 功能说明 |
+|---------|---------|
+| get_current_time | 获取当前本地时间 |
+
+---
+
+### 10. bmi-mcp（BMI指数）
 
 **功能**: BMI体重指数计算与健康评估
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| BMI____ | 计算BMI及健康建议 |
+| BMI体重指数 | 根据身高体重计算BMI，返回健康评估与建议 |
 
 ---
 
-### 5. qrcode-mcp (二维码)
+### 11. bw-ir（发票验证）
 
-**功能**: 生成二维码图片
+**功能**: 增值税发票/普通发票真实性核验
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| ______ | 生成二维码 |
+| invoice_verification | 验证发票真伪与合规性，支持14类票据 |
 
 ---
 
-### 6. gezhe (PPT生成)
+### 12. food-detective（美食推荐）
 
-**功能**: AI生成PPT演示文稿
+**功能**: 地方美食推荐
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| generate_ppt_by_topic | 根据主题生成PPT |
+| 推荐美食 | 传入地名，返回5条当地美食和推荐理由 |
 
 ---
 
-### 7. bmi-mcp (健康指数)
+### 13. how-to-cook（菜谱查询）
 
-**功能**: 身体健康指数计算
+**功能**: 菜谱查询与膳食推荐
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| BMI____ | BMI计算与健康建议 |
+| mcp_howtocook_getAllRecipes | 获取所有菜谱 |
+| mcp_howtocook_getRecipesByCategory | 按分类查询菜谱（水产/早餐/荤菜/素菜等） |
+| mcp_howtocook_getRecipeById | 按名称/ID查询菜谱详情（食材+步骤） |
+| mcp_howtocook_whatToEat | 根据人数推荐菜品组合 |
+| mcp_howtocook_recommendMeals | 智能推荐一周膳食计划，含购物清单 |
 
 ---
 
-### 8. bw-ir (发票验证)
+### 14. market-cmapi（地区新闻）
 
-**功能**: 增值税发票真伪查验
+**功能**: 中国各省市地区新闻查询
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| invoice_verification | 发票验证 |
+| 查询地区新闻 | 按地区ID/名称查询新闻 |
+| 查询支持的新闻地区 | 查询API支持的省市列表 |
 
 ---
 
-### 9. food-detective (美食推荐)
+### 15. openscad（3D建模）
 
-**功能**: 各地美食推荐
+**功能**: AI 3D建模与图片生成
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| ______ | 查询地方美食推荐 |
+| create_3d_model | 自然语言生成3D模型 |
+| modify_3d_model | 修改现有3D模型 |
+| export_model | 导出3D模型（STL等格式） |
+| list_models | 列出所有生成的模型 |
+| get_supported_3d_shapes | 获取支持的3D形状类型 |
+| generate_image | Venice.ai图片生成 |
+| generate_image_gemini | Google Gemini图片生成 |
 
 ---
 
-### 10. market-cmapi (区域新闻)
+### 16. vision-mcp（图片分析）
 
-**功能**: 各省市区域新闻查询
+**功能**: AI图片内容分析与OCR识别
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| _______ | 查询区域新闻 |
-| __________ | 查询支持区域 |
+| analyze_image | 分析图片内容并提供详细描述 |
 
 ---
 
-### 11. how-to-cook (菜谱)
+### 17. gezhe（PPT生成）
 
-**功能**: 中华菜谱大全
+**功能**: AI自动生成PPT演示文稿
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| getAllRecipes | 获取所有菜谱 |
-| getRecipeById | 按ID查询菜谱 |
-| getRecipesByCategory | 按分类查询菜谱 |
-| whatToEat | 随机推荐菜品 |
-| recommendMeals | 智能推荐膳食 |
+| generate_ppt_by_topic | 输入主题，自动生成PPT |
 
 ---
 
-### 12. minimax (AI内容生成)
+### 18. playwright（浏览器自动化）
 
-**功能**: 文本/图片/视频/音乐/语音生成
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| text_to_image | 文本生成图片 |
-| generate_video | 文本/图片生成视频 |
-| music_generation | AI音乐生成 |
-| text_to_audio | 文本转语音 |
-| voice_clone | 语音克隆 |
-| voice_design | 语音设计 |
-| list_voices | 列出可用音色 |
-| play_audio | 播放音频 |
-| query_video_generation | 查询视频生成状态 |
-
----
-
-### 13. antv-visual (可视化图表)
-
-**功能**: 多种图表可视化生成
+**功能**: 浏览器自动化操作与网页抓取
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| generate_bar_chart | 生成柱状图 |
-| generate_column_chart | 生成条形图 |
-| generate_line_chart | 生成折线图 |
-| generate_area_chart | 生成面积图 |
-| generate_pie_chart | 生成饼图 |
-| generate_scatter_chart | 生成散点图 |
-| generate_funnel_chart | 生成漏斗图 |
-| generate_radar_chart | 生成雷达图 |
-| generate_mind_map | 生成思维导图 |
-| generate_flow_diagram | 生成流程图 |
-| generate_organization_chart | 生成组织图 |
-| generate_network_graph | 生成网络图 |
-| generate_fishbone_diagram | 生成鱼骨图 |
-| generate_sankey_chart | 生成桑基图 |
-| generate_treemap_chart | 生成矩形树图 |
-| generate_boxplot_chart | 生成箱线图 |
-| generate_violin_chart | 生成小提琴图 |
-| generate_histogram_chart | 生成直方图 |
-| generate_word_cloud_chart | 生成词云图 |
-| generate_liquid_chart | 生成水球图 |
-| generate_venn_chart | 生成韦恩图 |
-| generate_district_map | 生成区域地图 |
-| generate_path_map | 生成路线地图 |
-| generate_pin_map | 生成标点地图 |
-| generate_dual_axes_chart | 生成双轴图表 |
-
----
-
-### 14. mmb-mcp (音乐生成)
-
-**功能**: Suno风格音乐生成
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| music_generation | AI音乐生成 |
-
----
-
-## SSE传输型MCP
-
-### 15. amap (高德地图)
-
-**功能**: 高德地图服务
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| maps_geo | 地址转经纬度 |
-| maps_regeocode | 经纬度转地址 |
-| maps_direction_driving | 驾车导航 |
-| maps_direction_walking | 步行导航 |
-| maps_direction_bicycling | 骑行导航 |
-| maps_direction_transit_integrated | 公交导航 |
-| maps_text_search | 关键词搜索 |
-| maps_around_search | 周边搜索 |
-| maps_search_detail | 搜索详情 |
-| maps_distance | 距离测量 |
-| maps_ip_location | IP定位 |
-| maps_weather | 天气预报 |
-
----
-
-### 16. weather (天气预报)
-
-**功能**: 天气查询
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| get_weather | 获取当前天气 |
-| get_forecast | 获取天气预报 |
-| get_air_quality | 获取空气质量 |
-
----
-
-### 17. local_time (本地时间)
-
-**功能**: 获取本地时间
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| get_current_time | 获取当前时间 |
-
----
-
-### 18. vision-mcp (视觉理解)
-
-**功能**: 图片/视频理解与分析
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| analyze_image | 分析图片内容 |
-
----
-
-## Stdio传输型MCP
-
-### 19. github (GitHub操作)
-
-**功能**: GitHub仓库/PR/Issue管理
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| get_file_contents | 获取文件内容 |
-| push_files | 推送多个文件 |
-| create_repository | 创建仓库 |
-| fork_repository | Fork仓库 |
-| create_branch | 创建分支 |
-| create_pull_request | 创建PR |
-| merge_pull_request | 合并PR |
-| get_pull_request | 获取PR详情 |
-| list_pull_requests | 列出PR |
-| get_pull_request_files | 获取PR文件 |
-| get_pull_request_reviews | 获取PR审查 |
-| get_pull_request_comments | 获取PR评论 |
-| create_pull_request_review | 创建PR审查 |
-| list_commits | 列出提交 |
-| get_issue | 获取Issue |
-| list_issues | 列出Issue |
-| create_issue | 创建Issue |
-| update_issue | 更新Issue |
-| add_issue_comment | 添加Issue评论 |
-| search_repositories | 搜索仓库 |
-| search_issues | 搜索Issue |
-| search_code | 搜索代码 |
-| search_users | 搜索用户 |
-| update_pull_request_branch | 更新PR分支 |
-| get_pull_request_status | 获取PR状态 |
-
----
-
-### 20. sqlite (SQLite数据库)
-
-**功能**: 本地SQLite数据库操作
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| list_tables | 列出表 |
-| describe_table | 表结构 |
-| read_query | 读取查询 |
-| write_query | 写入/更新/删除 |
-| create_table | 创建表 |
-
----
-
-### 21. playwright (浏览器自动化)
-
-**功能**: 浏览器自动化操作
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| navigate | 导航到URL |
-| screenshot | 截图 |
-| click | 点击元素 |
-| fill | 填写表单 |
-| get_text | 获取文本 |
-| get_page_content | 获取页面内容 |
-| wait_for_selector | 等待元素 |
+| navigate | 导航到指定URL |
+| screenshot | 页面截图 |
+| get_page_content | 获取页面HTML内容 |
+| get_text | 获取元素文本内容 |
+| click | 点击页面元素 |
+| fill | 填写表单字段 |
+| wait_for_selector | 等待元素出现 |
 | close_browser | 关闭浏览器 |
 
 ---
 
-### 22. pandoc (文档转换)
+### 19. pandoc（文档转换）
 
-**功能**: 文档格式转换
+**功能**: 文档格式转换（Markdown/HTML/PDF/DOCX等）
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| convert_contents | 转换内容格式 |
+| convert-contents | 内容格式转换（支持PDF/DOCX/HTML等） |
 
 ---
 
-### 23. doc-forge (文档处理)
+### 20. doc-forge（文档处理）
 
-**功能**: PDF/Word/Excel处理
+**功能**: PDF/DOCX/HTML/Excel等文档处理工具
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| excel_read | 读取Excel |
-| excel_write_to_sheet | 写入Excel |
-| excel_format_range | 格式化单元格 |
-| excel_create_table | 创建表格 |
-| excel_describe_sheets | 列出工作表 |
-| excel_copy_sheet | 复制工作表 |
-| pdf_merger | 合并PDF |
+| document_reader | 读取PDF/DOCX/TXT等文档 |
+| pdf_merger | 合并多个PDF |
 | pdf_splitter | 拆分PDF |
-| document_reader | 读取文档 |
-| docx_to_html | DOCX转HTML |
 | docx_to_pdf | DOCX转PDF |
+| docx_to_html | DOCX转HTML |
 | html_to_markdown | HTML转Markdown |
-| html_to_text | HTML转文本 |
-| html_cleaner | 清理HTML |
-| html_formatter | 格式化HTML |
-| html_extract_resources | 提取资源 |
-| format_convert | 格式转换 |
-| text_encoding_converter | 编码转换 |
-| text_formatter | 文本格式化 |
-| text_diff | 文本对比 |
-| text_splitter | 文本分割 |
+| html_to_text | HTML转纯文本 |
+| html_cleaner | 清理HTML冗余标签 |
+| html_formatter | 格式化HTML代码 |
+| html_extract_resources | 提取HTML资源（图片/视频/链接） |
+| text_diff | 比较两个文本文件差异 |
+| text_splitter | 按分隔符/行数拆分文本 |
+| text_formatter | 格式化文本（缩进/行距） |
+| text_encoding_converter | 文本编码转换 |
+| excel_read | 读取Excel并转为JSON |
+| format_convert | 文档格式互转（Markdown/HTML/XML/JSON） |
 
 ---
 
-### 24. excel (Excel处理)
+### 21. excel（Excel操作）
 
-**功能**: Excel操作
+**功能**: Excel读取/写入/格式化
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| excel_read | 读取Excel |
-| excel_write_to_sheet | 写入Excel |
-| excel_format_range | 格式化 |
-| excel_create_table | 创建表格 |
-| excel_describe_sheets | 列出工作表 |
+| excel_read_sheet | 读取Excel工作表（支持分页） |
+| excel_write_to_sheet | 写入数据到工作表 |
+| excel_format_range | 格式化单元格区域 |
+| excel_create_table | 创建Excel表格 |
 | excel_copy_sheet | 复制工作表 |
+| excel_describe_sheets | 列出所有工作表信息 |
 
 ---
 
-### 25. openscad (3D建模)
+### 22. qrcode-mcp（二维码）
 
-**功能**: 3D模型生成与导出
+**功能**: 二维码生成
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| create_3d_model | 创建3D模型 |
-| modify_3d_model | 修改3D模型 |
-| export_model | 导出模型 |
-| list_models | 列出模型 |
-| generate_image | 生成图片 |
-| generate_image_gemini | Gemini生成图片 |
-| get_supported_3d_shapes | 支持的形状 |
+| 二维码生成 | 将文本/URL生成为二维码图片 |
 
 ---
 
-### 26. xhs-toolkit (小红书)
+### 23. sqlite（数据库）
 
-**功能**: 小红书内容工具
+**功能**: SQLite数据库操作
 
 | 工具名称 | 功能说明 |
 |---------|---------|
-| search_notes | 搜索笔记 |
-| get_note_detail | 获取笔记详情 |
-| get_home_feed | 获取首页推荐 |
+| list_tables | 列出所有表 |
+| describe_table | 获取表结构 |
+| read_query | 执行SELECT查询 |
+| write_query | 执行INSERT/UPDATE/DELETE |
+| create_table | 创建新表 |
 
 ---
 
-### 27. xhs-toolkit-http (小红书HTTP)
+## 未连接/已禁用MCP
 
-**功能**: 小红书HTTP API
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| (HTTP API接口) | 小红书API调用 |
-
----
-
-### 28. qrcode-mcp (二维码生成)
-
-**功能**: 本地二维码生成与识别
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| qrcode_generator | 生成二维码 |
+| MCP名称 | 状态 | 说明 |
+|--------|------|------|
+| luckin | ✗ disabled | 瑞幸咖啡MCP（已禁用） |
+| mbti | ✗ disabled | MBTI性格测试MCP（已禁用） |
+| mmb-mcp | ✗ 401错误 | 慢慢买MCP（认证失败） |
+| gf-windmill | ✗ disabled | 券商MCP（已禁用） |
+| xhs-toolkit | ✗ 超时 | 小红书MCP（连接超时） |
+| xhs-toolkit-http | ✗ 连接失败 | 小红书HTTP服务（未启动） |
 
 ---
 
-## 统计汇总
-
-| 传输类型 | 已启用数量 |
-|---------|----------|
-| HTTP | 11 |
-| SSE | 6 |
-| Stdio | 11 |
-| **总计** | **28** |
-
----
-
-*文档由Hermes Agent自动生成*
+*📌 文档由 Hermes Agent 自动生成*
