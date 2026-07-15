@@ -1,6 +1,6 @@
 # Hermes Agent MCP API 文档
 
-> 🤖 Powered by Hermes Agent | 更新日期：2026年06月26日 08:02 CST
+> 🤖 Powered by Hermes Agent | 更新日期：2026年07月15日 08:00 CST
 
 **⚠️ 状态说明** | 🟢 enabled = 已启用 | 🔴 disabled = 已禁用 | ❌ failed = 连接失败
 
@@ -18,11 +18,9 @@
 
 ## 1. antv-chart — A股/基金/指数金融数据
 
-**工具数量**: 100+ | **状态**: 🟢 enabled
+**工具数量**: 128 | **状态**: 🟢 enabled
 
 功能全面的A股/基金/指数/债券/宏观经济数据查询接口。
-
-### 股票数据
 
 | 工具名称 | 功能说明 |
 |---------|---------|
@@ -61,11 +59,6 @@
 | `mcp_antv_chart_get_stock_rights_issues` | 查询配股发行信息 |
 | `mcp_antv_chart_list_stock_former_names` | 查询股票历史曾用名 |
 | `mcp_antv_chart_get_stock_industries` | 查询股票行业分类 |
-
-### 基金数据
-
-| 工具名称 | 功能说明 |
-|---------|---------|
 | `mcp_antv_chart_list_fund_all` | 获取全市场基金列表 |
 | `mcp_antv_chart_get_fund_basic_info` | 查询基金基本信息 |
 | `mcp_antv_chart_get_fund_categories` | 查询基金三级分类 |
@@ -96,20 +89,10 @@
 | `mcp_antv_chart_get_fund_code_assoc` | 查询基金关联关系 |
 | `mcp_antv_chart_get_fund_award_records` | 查询基金所获奖项 |
 | `mcp_antv_chart_list_fund_listings_record` | 查询基金发行上市信息 |
-
-### 指数数据
-
-| 工具名称 | 功能说明 |
-|---------|---------|
 | `mcp_antv_chart_get_index_basic_info` | 查询指数基本信息 |
 | `mcp_antv_chart_list_index_quotes` | 查询指数历史行情 |
 | `mcp_antv_chart_list_index_quote_barch` | 查询指数条形行情 |
 | `mcp_antv_chart_list_perf_benchmark_quote` | 查询基准指数行情 |
-
-### 宏观/其他
-
-| 工具名称 | 功能说明 |
-|---------|---------|
 | `mcp_antv_chart_search` | 金融产品关键字搜索 |
 | `mcp_antv_chart_list_industries` | 行业列表查询 |
 | `mcp_antv_chart_list_concepts` | 概念板块列表 |
@@ -499,4 +482,4 @@ Excel工作表读写、格式化、创建表格。
 ---
 
 > 📌 本文档由 Hermes Agent 自动生成，每8小时更新一次
-> 📅 更新日期：2026年06月26日 08:02 CST
+> 📅 更新日期：2026年07月15日 08:00 CST
