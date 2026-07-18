@@ -1,288 +1,154 @@
-# Hermes Agent API 工具文档
+# Hermes Agent API 文档
 
-> 🤖 Powered by Hermes Agent | 更新日期：2026年07月17日 08:03 CST
-
-**⚠️ 状态说明** | 🟢 enabled = 已启用 | 🔴 disabled = 已禁用 | ⏳ available = 可用（未安装）
-
----
-
-## 一、工具集总览（Built-in Toolsets）
-
-| 状态 | 数量 | 工具集名称 |
-|------|------|-----------|
-| 🟢 enabled | 18 | web, browser, terminal, file, code_execution, vision, image_gen, tts, skills, todo, memory, session_search, clarify, delegation, cronjob, messaging, computer_use |
-| 🔴 disabled | 9 | video, video_gen, x_search, moa, context_engine, homeassistant, spotify, yuanbao |
+> 🤖 Powered by Hermes Agent | 更新日期：2026年07月18日 08:04 CST
+> 
+> ⚠️ 当前无已配置的 MCP 服务（hermes mcp list 返回空）
+> 可安装 MCP：linear（Linear项目）、n8n（工作流）
 
 ---
 
-## 二、已启用工具集详情
+## MCP 服务状态
 
-### 1. web 🔍 Web Search & Scraping
+| 状态 | 数量 | 说明 |
+|------|------|------|
+| 🟢 已启用 | 0 | 当前无已配置 MCP |
+| 🔴 可用（未安装） | 2 | linear、n8n |
 
-网页搜索和内容抓取工具。
+### 可安装 MCP
 
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `web_search` | 网络搜索，查询关键词相关信息 |
-| `web_fetch` | 获取网页内容，支持 Markdown 格式提取 |
+| MCP名称 | 状态 | 描述 |
+|---------|------|------|
+| linear | available | Find, create, and update Linear issues, projects, and comments |
+| n8n | available | Manage and inspect n8n workflows from Hermes |
 
----
-
-### 2. browser 🌐 Browser Automation
-
-浏览器自动化控制。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `browser_navigate` | 导航到指定 URL |
-| `browser_snapshot` | 获取页面快照 |
-| `browser_click` | 点击页面元素 |
-| `browser_type` | 在输入框中输入文字 |
-| `browser_scroll` | 滚动页面 |
-| `browser_vision` | 截取页面截图 |
+> 安装命令：`hermes mcp install <name>`
 
 ---
 
-### 3. terminal 💻 Terminal & Processes
+## 内置工具集（18个已启用 / 7个已禁用）
 
-终端命令执行和进程管理。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `terminal` | 执行 Shell 命令 |
-| `process` | 管理后台进程 |
-
----
-
-### 4. file 📁 File Operations
-
-文件系统操作。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `read_file` | 读取文件内容 |
-| `write_file` | 写入文件内容 |
-| `patch` | 补丁文件编辑 |
-| `search_files` | 搜索文件内容 |
-| `execute_code` | 执行 Python 代码 |
-
----
-
-### 5. code_execution ⚡ Code Execution
-
-Python 代码执行环境。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `execute_code` | 执行 Python 代码，支持导入工具库 |
+| 状态 | 工具集 | 说明 |
+|------|--------|------|
+| ✓ enabled | web | 🔍 Web Search & Scraping |
+| ✓ enabled | browser | 🌐 Browser Automation |
+| ✓ enabled | terminal | 💻 Terminal & Processes |
+| ✓ enabled | file | 📁 File Operations |
+| ✓ enabled | code_execution | ⚡ Code Execution |
+| ✓ enabled | vision | 👁️ Vision / Image Analysis |
+| ✗ disabled | video | 🎬 Video Analysis |
+| ✓ enabled | image_gen | 🎨 Image Generation |
+| ✗ disabled | video_gen | 🎬 Video Generation |
+| ✗ disabled | x_search | 🐦 X (Twitter) Search |
+| ✗ disabled | moa | 🧠 Mixture of Agents |
+| ✓ enabled | tts | 🔊 Text-to-Speech |
+| ✓ enabled | skills | 📚 Skills |
+| ✓ enabled | todo | 📋 Task Planning |
+| ✓ enabled | memory | 💾 Memory |
+| ✗ disabled | context_engine | 🧩 Context Engine |
+| ✓ enabled | session_search | 🔎 Session Search |
+| ✓ enabled | clarify | ❓ Clarifying Questions |
+| ✓ enabled | delegation | 👥 Task Delegation |
+| ✓ enabled | cronjob | ⏰ Cron Jobs |
+| ✓ enabled | messaging | 📨 Cross-Platform Messaging |
+| ✗ disabled | homeassistant | 🏠 Home Assistant |
+| ✗ disabled | spotify | 🎵 Spotify |
+| ✗ disabled | yuanbao | 🤖 Yuanbao |
+| ✓ enabled | computer_use | 🖱️ Computer Use (macOS) |
 
 ---
 
-### 6. vision 👁️ Vision / Image Analysis
+## 内置工具详情
 
-图像和视频内容分析。
+### web（Web Search & Scraping）
+- `web_extract_tool` — 网页内容提取
+- `web_search_tool` — 搜索引擎搜索
 
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `vision_analyze` | 分析图片内容，提供详细描述 |
+### browser（Browser Automation）
+- `browser_navigate` — 导航到URL
+- `browser_snapshot` — 获取页面快照
+- `browser_click` — 点击元素
+- `browser_type` — 输入文本
+- `browser_scroll` — 滚动页面
+- `browser_vision` — 页面截图视觉分析
+- `browser_back` — 返回上一页
+- `browser_press` — 按键操作
+- `browser_console` — 获取控制台输出
+- `browser_get_images` — 获取页面图片列表
 
----
+### terminal（Terminal & Processes）
+- `terminal_tool` — 执行Shell命令
 
-### 7. image_gen 🎨 Image Generation
+### code_execution（Code Execution）
+- `execute_code` — Python代码执行
 
-AI 图像生成。
+### vision（Vision / Image Analysis）
+- `vision_analyze_tool` — 图像/视频分析
+- `video_analyze_tool` — 视频分析
 
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `image_generate` | 根据文本提示生成图像 |
+### image_gen（Image Generation）
+- `image_generate_tool` — AI图片生成
 
----
+### tts（Text-to-Speech）
+- `text_to_speech_tool` — 文字转语音（微信禁用）
 
-### 8. tts 🔊 Text-to-Speech
+### skills（Skills Management）
+- `skills_list` — 列出所有技能
+- `skill_view` — 查看技能详情
+- `skill_manage` — 创建/编辑/删除技能
 
-文本转语音。
+### todo（Task Planning）
+- `todo` — 任务清单管理
 
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `text_to_speech` | 将文本转换为语音音频 |
+### memory（Memory）
+- `memory` — 持久记忆存取
 
----
+### session_search（Session Search）
+- `session_search` — 跨会话历史搜索
 
-### 9. skills 📚 Skills
+### clarify（Clarifying Questions）
+- `clarify_tool` — 生成澄清问题
 
-技能管理。
+### delegation（Task Delegation）
+- `delegate_task` — 任务委托子代理
 
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `skills_list` | 列出所有可用技能 |
-| `skill_view` | 查看技能详情 |
-| `skill_manage` | 管理技能（创建、更新、删除） |
+### cronjob（Cron Jobs）
+- `cronjob_tools` — 定时任务管理
 
----
+### messaging（Cross-Platform Messaging）
+- `send_message_tool` — 跨平台发送消息
 
-### 10. todo 📋 Task Planning
+### computer_use（Computer Use - macOS）
+- `handle_computer_use` — macOS自动化
 
-任务规划管理。
+### file（File Operations）
+- `read_file` — 读取文件
+- `write_file` — 写入文件
+- `patch` — 局部编辑
+- `search_files` — 搜索文件内容
 
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `todo` | 创建、更新、查看任务列表 |
-
----
-
-### 11. memory 💾 Memory
-
-持久化记忆存储。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `memory` | 保存/读取持久化记忆 |
-
----
-
-### 12. session_search 🔎 Session Search
-
-会话历史搜索。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `session_search` | 搜索历史会话内容 |
-
----
-
-### 13. clarify ❓ Clarifying Questions
-
-澄清问题。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `clarify` | 向用户提问以澄清需求 |
+### mcp（MCP Server Management）
+- `mcp_tool` — MCP服务器管理
 
 ---
 
-### 14. delegation 👥 Task Delegation
+## 已安装 Skills（173个）
 
-任务委托。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `delegate_task` | 委托子任务给其他 Agent |
-
----
-
-### 15. cronjob ⏰ Cron Jobs
-
-定时任务管理。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `cronjob` | 创建、查看、删除定时任务 |
+| 类别 | 数量 | 代表技能 |
+|------|------|---------|
+| 自动化 | 多 | browser-act, playwright, firecrawl, agent-reach |
+| 开发 | 多 | github, git-commit, prisma-cli, python-design-patterns |
+| 创意/设计 | 多 | frontend-design, shadcn-ui, excalidraw-diagram-generator |
+| 数据 | 多 | jupyter-live-kernel, dataverse, cn-financial-scraper |
+| 文档 | 多 | docx, pdf, pptx, word-docx, excel-xlsx |
+| 办公协作 | 多 | notion-api, feishu, slack-workflows, jira-automation |
+| 媒体 | 多 | youtube-content, spotify, gif-search |
+| 社交 | 多 | twitter, xiaohongshu, discord-bot |
+| AI/ML | 多 | openai, claude-api, huggingface-hub, llama-cpp |
+| 生活服务 | 多 | flight-assistant, hotel-booking-ai, uupt-delivery |
+| 专业工具 | 多 | valuation-analysis, westock-data, tavily-search-pro |
 
 ---
 
-### 16. messaging 📨 Cross-Platform Messaging
-
-跨平台消息发送。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `send_message` | 向各平台发送消息 |
-
----
-
-### 17. computer_use 🖱️ Computer Use (macOS)
-
-macOS 电脑控制。
-
-| 工具名称 | 功能说明 |
-|---------|---------|
-| `computer_use` | 控制 macOS 桌面应用 |
-
----
-
-## 三、MCP 服务（Model Context Protocol）
-
-### 已配置 MCP 服务器
-
-当前无已配置的 MCP 服务器。
-
-安装方式：`hermes mcp install <name>`
-
-### 可用 MCP 目录
-
-| 状态 | MCP名称 | 功能说明 |
-|------|---------|---------|
-| ⏳ available | linear | Find, create, and update Linear issues, projects, and comments |
-| ⏳ available | n8n | Manage and inspect n8n workflows from Hermes |
-
-### 安装已禁用工具
-
-以下工具需要额外配置或服务支持：
-
-| 工具集 | 状态 | 说明 |
-|--------|------|------|
-| video | 🔴 disabled | 视频分析功能 |
-| video_gen | 🔴 disabled | 视频生成功能 |
-| x_search | 🔴 disabled | X (Twitter) 搜索 |
-| moa | 🔴 disabled | Mixture of Agents |
-| context_engine | 🔴 disabled | 上下文引擎 |
-| homeassistant | 🔴 disabled | Home Assistant 智能家居控制 |
-| spotify | 🔴 disabled | Spotify 音乐控制 |
-| yuanbao | 🔴 disabled | 腾讯元宝 |
-
----
-
-## 四、已安装 Skills 列表
-
-当前已安装 149 个技能（Skills），涵盖以下领域：
-
-- 🚄 **出行**: 12306火车票查询、航班助手、酒店预订
-- 🍜 **外卖**: 美团优惠券、饿了么订单
-- 🛒 **购物**: 淘宝比价、京东返利
-- 📊 **数据**: 金融数据、数据科学、Jupyter
-- 🎨 **创意**: 图像生成、视频剪辑、PPT制作
-- 📝 **文档**: PDF处理、Word/Excel/PPT
-- 💬 **社交**: 微信自动化、小红书、X/Twitter
-- 🏠 **办公**: Notion、Linear、Jira、飞书
-- 🧠 **AI工具**: LLM调用、模型微调、推理服务
-- 🔧 **开发**: GitHub、代码测试、Docker
-- 🌤️ **生活**: 天气查询、跑腿服务、提醒
-
-查看完整技能列表请访问：[skills](./skills/)
-
----
-
-## 五、快速使用指南
-
-### 1. 搜索网页
-```
-使用 web_search 工具搜索信息
-```
-
-### 2. 生成图片
-```
-使用 image_generate 工具，传入提示词
-```
-
-### 3. 操作文件
-```
-read_file 读取文件
-write_file 写入文件
-```
-
-### 4. 执行代码
-```
-使用 execute_code 执行 Python 代码
-```
-
-### 5. 安装 MCP
-```bash
-hermes mcp install <mcp名称>
-# 例如: hermes mcp install linear
-```
-
----
-
-> 📌 本文档由 Hermes Agent 自动生成
-> 📅 更新日期：2026年07月17日 08:03 CST
-> 🔗 仓库：https://github.com/agdu2005/wangwang-api-docs
+> 📌 本文档由 Hermes Agent 自动生成 | 每周定时更新
+> 数据来源：`hermes mcp list` + `hermes tools list` + `hermes mcp catalog`
+> GitHub仓库：agdu2005/wangwang-api-docs
