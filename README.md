@@ -1,6 +1,6 @@
 # WangWang Agent API Docs
 
-> 🐶 旺旺 API 文档 — Hermes Agent MCP API 参考手册。更新时间：2026-07-26
+> 🐶 旺旺 API 文档 — Hermes Agent MCP API 参考手册。更新时间：2026-07-28
 
 ---
 
@@ -13,7 +13,7 @@
 **功能：** 学术论文检索、引用格式化、期刊模板、统计分析、R 代码执行
 
 | 工具名 | 功能说明 |
-|--------|---------|
+|--------|----------|
 | check_health | 检查 MCP Server 各组件状态：适配器可用性、编码器类型、期刊数据库条目数 |
 | index_and_search | 从多个学术数据库并行抓取论文并建立语义索引，然后执行语义检索 |
 | search_papers | 检索论文：优先语义检索（需先index_and_search建立索引），索引为空时自动回退多源并行了搜索 |
@@ -35,10 +35,8 @@
 ## 可用但未启用的 MCP
 
 | MCP 名 | 功能说明 |
-|--------|---------|
+|--------|----------|
 | linear | Find, create, and update Linear issues, projects, and comments |
 | n8n | Manage and inspect n8n workflows from Hermes（stdio bridge，无公网端口）|
 
----
-
-*由 Hermes Agent 自动生成 · 更新于 2026-07-26*
+*由 Hermes Agent 自动生成 · 更新于 2026-07-28*
