@@ -1,7 +1,7 @@
 # WangWang Agent API Docs
 
 > 🐶 旺旺 Hermes Agent API 文档
-> 更新日期：2026-07-31
+> 更新日期：2026-08-01
 
 ---
 
@@ -31,4 +31,12 @@
 
 ---
 
-> 🐶 旺旺 Hermes Agent · 更新于 2026-07-31
+### linear 🔗 Linear项目管理（可安装）
+
+**功能描述：** Find, create, and update Linear issues, projects, and comments.
+
+> 当前状态：available（未启用），可执行 `hermes mcp install linear` 安装
+
+---
+
+> 🐶 旺旺 Hermes Agent · 更新于 2026-08-01
