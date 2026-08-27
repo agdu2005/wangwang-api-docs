@@ -1,37 +1,114 @@
-# Wangwang Agent MCP API 文档
+# Wangwang Agent API Docs
 
-> **更新时间**: 2026-08-26  
-> **Agent**: 旺旺 (Hermes Agent)  
-> **说明**: 本文档记录 Hermes Gateway 已启用的所有 MCP 工具，供开发者参考。
+> 旺旺 Agent MCP & 工具集完整 API 文档  
+> 更新时间：2026-08-27 08:01 (北京时间)
 
 ---
 
-## 🔬 research-assistant（科研学术助手）
+## 一、Built-in Toolsets（内置工具集）
 
-**路径**: `/opt/research-assistant/mcp_server.py`  
-**状态**: ✓ enabled  
-**功能**: 多源文献检索 · 语义向量检索 · 统计分析 · 报告生成 · 证据映射 · 引用格式化
+| 工具集 | 功能描述 | 状态 |
+|--------|---------|------|
+| `web` | 🔍 Web 搜索与网页抓取 | ✓ enabled |
+| `browser` | 🌐 浏览器自动化 | ✓ enabled |
+| `terminal` | 💻 终端与进程管理 | ✓ enabled |
+| `file` | 📁 文件操作（读/写/搜索/补丁） | ✓ enabled |
+| `code_execution` | ⚡ Python 代码执行 | ✓ enabled |
+| `vision` | 👁️ 视觉 / 图片分析 | ✓ enabled |
+| `image_gen` | 🎨 AI 图片生成 | ✓ enabled |
+| `bfl` | 🎬 BFL FLUX 3 视频生成 | ✓ enabled |
+| `tts` | 🔊 文字转语音 | ✓ enabled |
+| `skills` | 📚 Skills 技能管理 | ✓ enabled |
+| `todo` | 📋 任务规划与追踪 | ✓ enabled |
+| `memory` | 💾 记忆 / 上下文管理 | ✓ enabled |
+| `session_search` | 🔎 会话历史搜索 | ✓ enabled |
+| `clarify` | ❓ 澄清问题 | ✓ enabled |
+| `delegation` | 👥 任务委托 / 子 Agent | ✓ enabled |
+| `cronjob` | ⏰ 定时任务调度 | ✓ enabled |
+| `computer_use` | 🖱️ 桌面自动化 (macOS/Windows/Linux) | ✓ enabled |
 
-### 工具列表
+### 已禁用的工具集
+
+| 工具集 | 功能描述 | 状态 |
+|--------|---------|------|
+| `video` | 🎬 视频分析 | ✗ disabled |
+| `video_gen` | 🎬 视频生成 | ✗ disabled |
+| `x_search` | 🐦 X (Twitter) 搜索 | ✗ disabled |
+| `stt` | 🎙️ 语音转文字 | ✗ disabled |
+| `homeassistant` | 🏠 Home Assistant | ✗ disabled |
+| `spotify` | 🎵 Spotify | ✗ disabled |
+| `yuanbao` | 🤖 腾讯元宝 | ✗ disabled |
+| `context_engine` | 🧩 上下文引擎 | ✗ disabled |
+
+---
+
+## 二、MCP Servers（MCP 服务）
+
+### research-assistant（科研学术助手）
+
+**路径**: `/opt/research-assistant/`  
+**Transport**: stdio  
+**状态**: ✓ enabled
+
+#### 工具列表
 
 | 工具名 | 功能描述 |
-|--------|----------|
-| `check_health` | 检查 MCP Server 各组件状态：适配器可用性、编码器类型、期刊数据库条目数 |
-| `index_and_search` | 从多个学术数据库并行抓取论文并建立语义索引，然后执行语义检索 |
-| `search_papers` | 检索论文：优先语义检索（需先index_and_search建立索引），索引为空时自动回退多源并行了搜索 |
-| `search_by_id` | 根据 DOI / PMID / arXiv ID 精确查询单篇论文元数据 |
-| `map_evidence` | 对一条论断检索相关文献并生成证据链，含强/弱/无三级强度标记 |
-| `analyze_data` | 统计分析：t-test / ANOVA / Pearson 相关 / Spearman 相关 / 描述性统计 |
-| `run_r_script` | 在 R 环境中执行 R 代码，返回 JSON 结果 |
-| `format_citation` | 格式化论文引用：支持 GB/T 7714 / APA / MLA / Chicago / IEEE / Harvard 6 种格式 |
-| `generate_report` | 生成学术论文报告（Word .docx 或 LaTeX .tex），适配 Nature/Science/Cell 等 338 个期刊模板 |
-| `list_journals` | 列出期刊模板数据库，支持按学科领域或关键词搜索（limit 最大 100） |
-| `get_journal_spec` | 获取单个期刊的完整模板规格（LaTeX/Word 参数、引用格式、摘要字数限制等） |
-| `check_update` | 检查学术助手是否有新版本可用 |
-| `apply_update` | 执行自动更新：下载最新版本、备份旧版本、应用更新 |
-| `update_journal_database` | 从 CrossRef API 批量更新本地期刊数据库 |
-| `fetch_journal_online` | 从 CrossRef API 实时查询期刊规格（无需本地数据库） |
+|--------|---------|
+| `search_papers` | 学术论文搜索（支持多源） |
+| `search_by_id` | 按论文 ID / DOI 精确搜索 |
+| `index_and_search` | 主题索引 + 语义搜索 |
+| `map_evidence` | 证据映射，验证陈述真实性 |
+| `analyze_data` | 统计分析（t-test / ANOVA / 相关性） |
+| `run_r_script` | 执行 R 脚本进行数据分析 |
+| `format_citation` | 格式化参考文献（多格式） |
+| `generate_report` | 生成完整研究报告 |
+| `list_journals` | 列出可用期刊及影响因子 |
+| `get_journal_spec` | 获取目标期刊投稿规范 |
+| `fetch_journal_online` | 在线获取期刊元数据 |
+| `update_journal_database` | 更新期刊数据库 |
+| `check_update` | 检查研究助手更新 |
+| `apply_update` | 应用更新 |
+| `literature_review_prompt` | 生成文献综述提示词 |
+| `research_report_prompt` | 生成研究报告提示词模板 |
 
 ---
 
-*本文档由 旺旺 Agent 自动生成 · 更新日期: 2026-08-26*
+## 三、快速参考
+
+### 常用命令
+
+```bash
+# 查看所有工具状态
+hermes tools list
+
+# 查看 MCP 服务状态
+hermes mcp list
+
+# 测试 MCP 连接
+hermes mcp test <server_name>
+
+# 列出所有可用 MCP 插件
+hermes mcp catalog
+
+# 安装新 MCP
+hermes mcp install <name>
+```
+
+### MCP 插件生态（可安装）
+
+| MCP | 功能描述 |
+|-----|---------|
+| `airtable` | Airtable 数据库操作 |
+| `asana` | Asana 任务管理 |
+| `figma` | Figma 设计上下文 |
+| `hugging_face` | Hugging Face 模型/数据集 |
+| `linear` | Linear 敏捷项目管理 |
+| `notion` | Notion 笔记与数据库 |
+| `stripe` | Stripe 支付集成 |
+| `supabase` | Supabase 数据库/存储 |
+| `vercel` | Vercel 部署管理 |
+| `sentry` | Sentry 错误监控 |
+
+---
+
+*本文档由 旺旺 Agent 自动生成 | Hermès Agent MCP Inspector*
