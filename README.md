@@ -1,43 +1,65 @@
 # 旺旺 API 文档
 
-> 📅 更新日期：2026-08-28  
-> 🤖 Hermès Gateway MCP 工具完整列表
+> 更新时间：2026-08-29 09:10:31 (北京时间 CST)
+
+## MCP 工具总览
+
+| 工具名称 | 功能描述 |
+|---------|---------|
+| **research-assistant** | 科研学术助手 MCP Server |
 
 ---
 
-## 📦 当前启用的 MCP 服务
+## research-assistant
 
-### research-assistant（科研学术助手）
+科研学术助手：多源文献检索 · 语义向量检索 · 统计分析 · 报告生成 · 证据映射
 
-**功能描述**：多源文献检索、语义向量检索、统计分析、报告生成、证据映射。支持 DOI/PMID/arXiv ID 直接查询，338 个期刊模板（Nature/Science/Cell 等）。无网络时自动降级 TF-IDF + 内置样本数据。
+**状态：** ✓ enabled (需要 MCP Python SDK)
 
-**工具列表**：
+### 工具列表
 
 | 工具名 | 功能说明 |
-|--------|----------|
-| `check_health` | 检查 MCP Server 各组件状态：适配器可用性、编码器类型、期刊数据库条目数 |
-| `index_and_search` | 从多个学术数据库并行抓取论文并建立语义索引，然后执行语义检索 |
-| `search_papers` | 检索论文：优先语义检索（需先index_and_search建立索引），索引为空时自动回退多源并行搜索 |
+|-------|---------|
+| `search_papers` | 语义检索已索引的论文数据库 |
 | `search_by_id` | 根据 DOI / PMID / arXiv ID 精确查询单篇论文元数据 |
-| `map_evidence` | 对一条论断检索相关文献并生成证据链，含强/弱/无三级强度标记 |
+| `index_and_search` | 从多个学术数据库并行抓取论文并建立语义索引，然后执行检索 |
 | `analyze_data` | 统计分析：t-test / ANOVA / Pearson 相关 / Spearman 相关 / 描述性统计 |
-| `run_r_script` | 在 R 环境中执行 R 代码，返回 JSON 结果（需安装 R 和 rpy2） |
-| `format_citation` | 格式化论文引用：支持 GB/T 7714 / APA / MLA / Chicago / IEEE / Harvard 6 种格式 |
-| `generate_report` | 生成学术论文报告（Word .docx 或 LaTeX .tex），适配 Nature/Science/Cell 等 338 个期刊模板 |
-| `list_journals` | 列出期刊模板数据库，支持按学科领域或关键词搜索 |
-| `get_journal_spec` | 获取单个期刊的完整模板规格（LaTeX/Word 参数、引用格式、摘要字数限制等） |
-| `check_update` | 检查学术助手是否有新版本可用 |
-| `apply_update` | 执行自动更新：下载最新版本、备份旧版本、应用更新 |
-| `fetch_journal_online` | 从 CrossRef API 实时查询期刊规格（无需本地数据库） |
-| `update_journal_database` | 从 CrossRef API 批量更新本地期刊数据库 |
+| `format_citation` | 格式化论文引用（6 种格式：GB/T 7714 / APA / MLA / Chicago / IEEE / Harvard） |
+| `generate_report` | 生成学术论文报告（Word .docx 或 LaTeX .tex） |
+| `list_journals` | 列出期刊模板数据库，支持搜索 |
+| `get_journal_spec` | 获取单个期刊的完整模板规格（如 nature / science / cell） |
+| `map_evidence` | Claim-Level 证据映射，论断 → 文献证据链 |
+| `run_r_script` | 在 R 环境中执行 R 代码 |
+| `check_health` | 检查 MCP Server 各组件状态 |
 
 ---
 
-## 📊 统计摘要
+## 可用 MCP 服务（未安装）
 
-- **MCP 服务总数**：1
-- **工具总数**：15
-- **最后更新**：2026-08-28
+以下服务已注册但未启用，可通过 `hermes mcp install <name>` 安装：
+
+| 服务名 | 功能 |
+|-------|------|
+| airtable | Airtable 数据库操作 |
+| asana | Asana 任务管理 |
+| atlassian | Jira + Confluence |
+| comfy-cloud | Comfy 云端生图/视频/音频 |
+| datadog | Datadog 监控 |
+| figma | Figma 设计 |
+| hugging_face | Hugging Face 模型/数据集 |
+| intercom | Intercom 客服 |
+| linear | Linear 项目管理 |
+| n8n | n8n 工作流 |
+| netlify | Netlify 部署 |
+| notion | Notion 笔记 |
+| paypal | PayPal 支付 |
+| sentry | Sentry 错误追踪 |
+| square | Square 支付 |
+| stripe | Stripe 支付 |
+| supabase | Supabase 数据库 |
+| unreal-engine | Unreal Engine 5 |
+| vercel | Vercel 部署 |
+| webflow | Webflow CMS |
 
 ---
 
